@@ -1,8 +1,10 @@
+import Sidebar from "@/components/Sidebar";
+
 export default function Home() {
-  console.log("farid");
   return (
-    <div className="min-h-screen">
-      <div className=""></div>
+    <div className="flex min-h-screen">
+      <Sidebar />
+      <div className="flex-1 p-4"></div>
     </div>
   );
 }
