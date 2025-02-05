@@ -8,6 +8,7 @@ import {
   MessagesSquare,
   Home,
   User,
+  GraduationCap,
   BriefcaseBusiness,
 } from "lucide-react";
 import Logo from "./ui/Logo";
@@ -26,6 +27,7 @@ const Sidebar = () => {
     { name: "Home", icon: Home, path: "/" },
     { name: "About", icon: User, path: "/about" },
     { name: "Portfolio", icon: BriefcaseBusiness, path: "/portfolio" },
+    { name: "Education", icon: GraduationCap, path: "/education" },
     { name: "Contant", icon: MessagesSquare, path: "/contant" },
   ];
 
@@ -49,7 +51,7 @@ const Sidebar = () => {
 
       <div
         className={`
-        fixed top-0 left-0 h-full w-60 bg-background shadow-lg transition-transform duration-300 md:relative md:translate-x-0
+        fixed top-0 bottom-0 left-0 h-full z-50 w-60 bg-background shadow-lg transition-transform duration-300 md:relative md:translate-x-0
         ${isOpen ? "translate-x-0" : "-translate-x-full"}
       `}
       >
