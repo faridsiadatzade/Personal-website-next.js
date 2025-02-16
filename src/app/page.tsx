@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import MyPhoto from "@/components/MyPhoto";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -21,7 +22,9 @@ export default function Home() {
           working flexibly with various types of development methodologies and
           team members.
         </h3>
-        <Button className="mt-8 md:mt-12 rounded-full">More About Me</Button>
+        <Link href="/about">
+          <Button className="mt-8 md:mt-12 rounded-full">More About Me</Button>
+        </Link>
       </div>
       <div className="md:flex md:justify-center mt-12 md:mt-[25%] lg:col-span-2 lg:mt-2 mx-auto">
         <MyPhoto />

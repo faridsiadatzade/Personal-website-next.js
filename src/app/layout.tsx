@@ -26,6 +26,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                const theme = localStorage.getItem("theme") || "light";
+                const storedColor = localStorage.getItem("primary-color") || "346.8 77.2% 49.8%";
+                if (theme === "dark") {
+                  document.documentElement.classList.add("dark");
+                } else {
+                  document.documentElement.classList.remove("dark");
+                }
+                document.documentElement.style.setProperty("--primary", storedColor);
+                document.documentElement.style.setProperty("--ring", storedColor);
+              })();
+            `,
+          }}
+        />
+      </head>
       <body
         className={`flex min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}
       >

@@ -16,18 +16,6 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
-    const storedColor = localStorage.getItem("primary-color");
-    const storedTheme = localStorage.getItem("theme") as "light" | "dark";
-    if (storedColor) {
-      setPrimaryColor(storedColor);
-    }
-    if (storedTheme) {
-      setTheme(storedTheme);
-      document.documentElement.classList.toggle("dark", storedTheme === "dark");
-    }
-  }, []);
-
-  useEffect(() => {
     document.documentElement.style.setProperty("--primary", primaryColor);
     document.documentElement.style.setProperty("--ring", primaryColor);
     localStorage.setItem("primary-color", primaryColor);
