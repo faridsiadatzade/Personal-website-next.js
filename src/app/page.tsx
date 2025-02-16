@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import MyPhoto from "@/components/ui/MyPhoto";
+import MyPhoto from "@/components/MyPhoto";
 
 export default function Home() {
   return (

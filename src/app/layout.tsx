@@ -1,5 +1,6 @@
 import Sidebar from "@/components/Sidebar";
 import type { Metadata } from "next";
+import { ThemeProvider } from "@/context/ThemeContext";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -28,8 +29,10 @@ export default function RootLayout({
       <body
         className={`flex min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Sidebar />
-        <main className="flex-1">{children}</main>
+        <ThemeProvider>
+          <Sidebar />
+          <main className="flex-1">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );

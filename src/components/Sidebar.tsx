@@ -11,7 +11,9 @@ import {
   GraduationCap,
   BriefcaseBusiness,
 } from "lucide-react";
-import Logo from "./ui/Logo";
+import Logo from "./Logo";
+import ColorPicker from "./ColorPicker";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -59,22 +61,31 @@ const Sidebar = () => {
           <Logo />
         </div>
 
-        <ul className="flex flex-col justify-center h-[80vh]">
-          {menuItems?.length > 0 &&
-            menuItems.map((item, index) => (
-              <li className="py-2 my-2 mx-8 border-b border-border" key={index}>
-                <Link
-                  href={item.path}
-                  className={`flex font-bold items-center space-x-3 hover:text-primary ${
-                    pathname === item.path && "text-primary"
-                  }`}
+        <div className="grid h-[80vh] mt-12">
+          <ul className="flex flex-col justify-center">
+            {menuItems?.length > 0 &&
+              menuItems.map((item, index) => (
+                <li
+                  className="py-2 my-2 mx-8 border-b border-border"
+                  key={index}
                 >
-                  <item.icon className="w-5 h-5" />
-                  <span>{item.name}</span>
-                </Link>
-              </li>
-            ))}
-        </ul>
+                  <Link
+                    href={item.path}
+                    className={`flex font-bold items-center space-x-3 hover:text-primary ${
+                      pathname === item.path && "text-primary"
+                    }`}
+                  >
+                    <item.icon className="w-5 h-5" />
+                    <span>{item.name}</span>
+                  </Link>
+                </li>
+              ))}
+          </ul>
+          <div className="flex mx-8 gap-4">
+            <ThemeSwitcher />
+            <ColorPicker />
+          </div>
+        </div>
       </div>
     </div>
   );
