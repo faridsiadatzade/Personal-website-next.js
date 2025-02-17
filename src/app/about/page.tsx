@@ -1,6 +1,6 @@
 import { ChevronRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
 interface BaseInfo {
   label: string;
   value: string;
@@ -62,9 +62,9 @@ const skills: SkillCategory[] = [
 const baseInfo: BaseInfo[] = [
   { label: "Birthday", value: "21 feb 1997" },
   { label: "Age", value: "28" },
+  { label: "City", value: "Tehran, Iran" },
   { label: "Email", value: "fsiadatzade@gmail.com" },
   { label: "Mobile", value: "+98 936 001 0251" },
-  { label: "City", value: "Tehran, Iran" },
   { label: "Freelance", value: "Available" },
 ];
 
@@ -93,8 +93,8 @@ function About() {
           </h3>
         </div>
         <div className="grid md:grid-cols-2 gap-4 mt-12">
-          <div className="grid md:grid-cols-2 gap-4 h-fit">
-            <div className="mb-4">
+          <div className="grid lg:grid-cols-2 gap-4 h-fit">
+            <div className="md:mb-4">
               <h2 className="text-2xl font-bold">Me</h2>
               <span className="block mt-1 w-20 border-b-4 border-primary"></span>
             </div>
@@ -107,9 +107,12 @@ function About() {
                   <p className="ml-2">{item.value}</p>
                 </div>
               ))}
+            <div className="my-4 md:mt-12 md:mb-1">
+              <Button className="rounded-full">ِDownload CV</Button>
+            </div>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
-            <div className="mb-4">
+            <div className="md:mb-4">
               <h2 className="text-2xl font-bold">Skills</h2>
               <span className="block mt-1 w-20 border-b-4 border-primary"></span>
             </div>
