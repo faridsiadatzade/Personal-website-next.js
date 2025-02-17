@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen items-center lg:grid grid-cols-5 gap-4 p-4">
+    <div className="min-h-screen items-center lg:grid grid-cols-5 gap-4 p-5">
       <div className="lg:col-span-3 lg:pl-4">
         <h2 className="font-bold text-4xl leading-12 md:leading-[4rem] mb-4">
           Hello, my name is{" "}
