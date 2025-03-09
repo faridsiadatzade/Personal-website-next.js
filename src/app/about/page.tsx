@@ -1,147 +1,85 @@
-import { ChevronRight } from "lucide-react";
-import { Progress } from "@/components/ui/progress";
-import { Button } from "@/components/ui/button";
-interface BaseInfo {
-  label: string;
-  value: string;
-}
-interface Skill {
-  key: string;
-  value: number;
-}
-interface SkillCategory {
-  category: string;
-  value: Skill[];
-}
+"use client";
 
-const skills: SkillCategory[] = [
-  {
-    category: "front-end",
-    value: [
-      { key: "nextjs", value: 80 },
-      { key: "reactjs", value: 80 },
-      { key: "typescript", value: 80 },
-      { key: "Redux", value: 80 },
-      { key: "React Query", value: 80 },
-      { key: "javascript", value: 90 },
-      { key: "html,css", value: 90 },
-      { key: "angularjs", value: 40 },
-    ],
-  },
-  {
-    category: "ui/ux",
-    value: [
-      { key: "Material-U", value: 100 },
-      { key: "tailwind", value: 100 },
-      { key: "css-in-js", value: 90 },
-      { key: "Responsive Design", value: 90 },
-      { key: "Adaptive Design", value: 90 },
-    ],
-  },
-  {
-    category: "Testing Frameworks",
-    value: [{ key: "jest", value: 70 }],
-  },
-  {
-    category: "Tools & Version Control",
-    value: [
-      { key: "github", value: 90 },
-      { key: "gitlab", value: 90 },
-      { key: "Azure DevOps", value: 80 },
-    ],
-  },
-  {
-    category: "other",
-    value: [
-      { key: "agile", value: 90 },
-      { key: "scrum methodologies", value: 80 },
-    ],
-  },
-];
+import { AboutSection } from "@/components/sections/AboutSection";
+import { AboutInfo } from "@/types/about";
 
-const baseInfo: BaseInfo[] = [
-  { label: "Birthday", value: "21 feb 1997" },
-  { label: "Age", value: "28" },
-  { label: "City", value: "Tehran, Iran" },
-  { label: "Email", value: "fsiadatzade@gmail.com" },
-  { label: "Mobile", value: "+98 936 001 0251" },
-  { label: "Freelance", value: "Available" },
-];
+const aboutData: AboutInfo = {
+  title: "About Me",
+  subtitle: "Frontend Developer & UI/UX Enthusiast",
+  description: [
+    "I am a passionate frontend developer with over 5 years of experience in creating modern and responsive web applications. My journey in web development started with a curiosity about how websites work and evolved into a deep love for creating beautiful, user-friendly interfaces.",
+    "I specialize in React and TypeScript, with a strong focus on building scalable and maintainable applications. I'm particularly interested in micro-frontend architecture and modern web technologies.",
+  ],
+  personalInfo: {
+    "Name": "Farid Siadatzadeh",
+    "Age": "27",
+    "Location": "Tehran, Iran",
+    "Experience": "5+ Years",
+    "Email": "farid.siadatzadeh@gmail.com",
+    "Languages": "Persian (Native), English (Professional)",
+    "Availability": "Open to Opportunities",
+    "Remote": "Available for Remote Work"
+  },
+  services: [
+    {
+      title: "Frontend Development",
+      description: "Building responsive and performant web applications using modern technologies and best practices.",
+      icon: "💻"
+    },
+    {
+      title: "UI/UX Design",
+      description: "Creating intuitive and beautiful user interfaces with a focus on user experience and accessibility.",
+      icon: "🎨"
+    },
+    {
+      title: "Code Review",
+      description: "Providing detailed code reviews and mentoring to ensure high-quality, maintainable code.",
+      icon: "📝"
+    },
+    {
+      title: "Performance Optimization",
+      description: "Optimizing web applications for better speed, performance, and user experience.",
+      icon: "⚡"
+    },
+    {
+      title: "Technical Consultation",
+      description: "Offering expert advice on frontend architecture, technology choices, and best practices.",
+      icon: "💡"
+    },
+    {
+      title: "Team Collaboration",
+      description: "Working effectively in agile teams and contributing to project success through clear communication.",
+      icon: "🤝"
+    }
+  ],
+  skills: [
+    {
+      name: "Frontend Development",
+      skills: [
+        { name: "React", level: 95 },
+        { name: "TypeScript", level: 90 },
+        { name: "Next.js", level: 85 },
+        { name: "Redux", level: 90 },
+        { name: "TailwindCSS", level: 95 }
+      ]
+    },
+    {
+      name: "Other Skills",
+      skills: [
+        { name: "Git & Version Control", level: 90 },
+        { name: "UI/UX Design", level: 85 },
+        { name: "Node.js", level: 75 },
+        { name: "Testing (Jest, RTL)", level: 80 },
+        { name: "Agile Methodologies", level: 85 }
+      ]
+    }
+  ]
+};
 
-function About() {
+export default function About() {
   return (
-    <section className="mt-5 p-5">
-      <div>
-        <h3 className="text-4xl font-bold">About Me</h3>
-        <span className="block mt-2 w-20 border-b-4 border-primary"></span>
-        <span className="block mt-2 w-9 border-b-4 border-primary"></span>
-      </div>
-      <div className="mt-9">
-        <h2 className="font-bold text-4xl leading-12 md:leading-[4rem] mb-4">
-          I'm Farid Siadatzade and
-          <span className="text-primary"> Front-end Developer</span>
-        </h2>
-        <div>
-          <h3 className="mb-4 text-foreground text-xl leading-9 text-justify">
-            Passionate and creative front-end developer with over 5 years of
-            experience developing cutting-edge and robust code for high-volume
-            businesses. Proven ability to leverage earned expertise and
-            project-wide knowledge to build future- proof, user-interactive
-            services that effortlessly scale. Skilled in problem-solving and
-            working flexibly with various types of development methodologies and
-            team members.
-          </h3>
-        </div>
-        <div className="grid md:grid-cols-2 gap-4 mt-12">
-          <div className="grid lg:grid-cols-2 gap-4 h-fit">
-            <div className="md:mb-4">
-              <h2 className="text-2xl font-bold">Me</h2>
-              <span className="block mt-1 w-20 border-b-4 border-primary"></span>
-            </div>
-            <br />
-            {baseInfo.length > 0 &&
-              baseInfo.map((item, index) => (
-                <div className="flex" key={index}>
-                  <ChevronRight className="text-primary" />
-                  <label className="font-bold ">{item.label}: </label>
-                  <p className="ml-2">{item.value}</p>
-                </div>
-              ))}
-            <div className="my-4 md:mt-12 md:mb-1">
-              <Button className="rounded-full">ِDownload CV</Button>
-            </div>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="md:mb-4">
-              <h2 className="text-2xl font-bold">Skills</h2>
-              <span className="block mt-1 w-20 border-b-4 border-primary"></span>
-            </div>
-            <br />
-            {skills.map((data, index) => (
-              <div
-                className="relative border-l-2 border-border pl-4 ml-4 mb-3"
-                key={index}
-              >
-                <div className="w-4 h-4 bg-primary rounded-full absolute left-[-10px]"></div>
-                <h4 className="font-bold mb-2">{data.category}</h4>
-                <div>
-                  {data.value.length > 0 &&
-                    data.value.map((item, index) => (
-                      <Progress
-                        className="mb-2"
-                        value={item.value}
-                        title={item.key}
-                        key={index}
-                      />
-                    ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+    <div className="container mx-auto py-8">
+      <AboutSection data={aboutData} />
+    </div>
   );
 }
-
-export default About;
