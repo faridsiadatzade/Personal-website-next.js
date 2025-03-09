@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import { Palette } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const colors = [
   "346.8 77.2% 49.8%",
@@ -19,34 +20,52 @@ export default function ColorPicker() {
   return (
     <div className="relative">
       <button
-        className="p-2 rounded-full shadow-lg bg-card"
+        className="p-2 rounded-full shadow-lg bg-card hover:bg-accent transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Palette className="w-6 h-6" />
       </button>
 
-      {isOpen && (
-        <div className="absolute top-12 left-1/2 -translate-x-1/2 shadow-lg p-2 rounded-lg flex space-x-2 bg-card transition-transform duration-600 translate-b-0">
-          {colors.map((color) => (
-            <button
-              key={color}
-              className={`
-                w-8 h-8 rounded-full border-2 transition-all
-                ${
-                  primaryColor === color
-                    ? "border-primary scale-110"
-                    : "border-border"
-                }
-              `}
-              style={{ backgroundColor: `hsl(${color})` }}
-              onClick={() => {
-                setPrimaryColor(color);
-                setIsOpen(false);
-              }}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40"
+              onClick={() => setIsOpen(false)}
             />
-          ))}
-        </div>
-      )}
+
+            {/* Color Picker Panel */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ type: "spring", bounce: 0.3 }}
+              className="absolute bottom-full mb-2 right-[-100%] shadow-lg p-2 rounded-lg flex space-x-2 bg-card border border-border z-50"
+            >
+              {colors.map((color) => (
+                <motion.button
+                  key={color}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`
+                    w-8 h-8 rounded-full border-2 transition-all
+                    ${primaryColor === color ? "border-primary scale-110" : "border-border"}
+                  `}
+                  style={{ backgroundColor: `hsl(${color})` }}
+                  onClick={() => {
+                    setPrimaryColor(color);
+                    setIsOpen(false);
+                  }}
+                />
+              ))}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

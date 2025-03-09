@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -14,10 +14,21 @@ import {
 import Logo from "./Logo";
 import ColorPicker from "./ColorPicker";
 import ThemeSwitcher from "./ThemeSwitcher";
+import { AnimatePresence, motion } from "framer-motion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const Sidebar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+
+  useEffect(() => {
+    if (isDesktop) {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
+  }, [isDesktop]);
 
   interface MenuItem {
     name: string;
@@ -35,30 +46,32 @@ const Sidebar = () => {
 
   return (
     <>
-      <button
-        className={`fixed top-4 left-4 z-50 p-2 bg-primary text-primary-foreground rounded-md md:hidden ${
-          isOpen && "hidden"
-        }`}
-        onClick={() => setIsOpen(true)}
-      >
-        <Menu className="w-6 h-6" />
-      </button>
+      <div className="fixed top-0 left-0 right-0 h-16 bg-background/80 backdrop-blur-sm border-b border-border z-40 flex md:hidden items-center px-4">
+        <button
+          className="p-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+          onClick={() => setIsOpen(true)}
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+      </div>
 
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+      <AnimatePresence>
+        {isOpen && !isDesktop && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            onClick={() => setIsOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
-      <aside
-        className={`
-          fixed top-0 bottom-0 left-0 w-64 z-50 
-          bg-background border-r border-border
-          transition-transform duration-300 ease-in-out
-          transform md:translate-x-0
-          ${isOpen ? "translate-x-0" : "-translate-x-full"}
-        `}
+      <motion.aside
+        initial={false}
+        animate={{ x: isOpen ? 0 : "-100%" }}
+        transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+        className="fixed top-0 bottom-0 left-0 w-64 z-50 bg-background border-r border-border"
       >
         <div className="flex flex-col h-full">
           <div className="flex justify-center pt-8">
@@ -77,7 +90,7 @@ const Sidebar = () => {
                       hover:bg-primary/10 hover:text-primary
                       ${pathname === item.path ? "bg-primary/10 text-primary" : "text-foreground"}
                     `}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => !isDesktop && setIsOpen(false)}
                   >
                     <item.icon className="w-5 h-5" />
                     <span className="font-medium">{item.name}</span>
@@ -94,11 +107,9 @@ const Sidebar = () => {
             </div>
           </div>
         </div>
-      </aside>
+      </motion.aside>
 
-      <div className="md:pl-64">
-        
-      </div>
+      <div className="md:pl-64" />
     </>
   );
 };

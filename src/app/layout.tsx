@@ -50,7 +50,7 @@ export default function RootLayout({
           <div className="flex min-h-screen bg-background">
             <Sidebar />
             <main className="flex-1 overflow-auto">
-              <div className="container mx-auto">
+              <div className="container mx-auto md:p-8 p-4 pt-16 md:pt-8">
                 {children}
               </div>
             </main>
