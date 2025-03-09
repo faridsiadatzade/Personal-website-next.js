@@ -31,15 +31,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                const theme = localStorage.getItem("theme") || "light";
-                const storedColor = localStorage.getItem("primary-color") || "346.8 77.2% 49.8%";
-                if (theme === "dark") {
-                  document.documentElement.classList.add("dark");
-                } else {
-                  document.documentElement.classList.remove("dark");
-                }
-                document.documentElement.style.setProperty("--primary", storedColor);
-                document.documentElement.style.setProperty("--ring", storedColor);
+                try {
+                  const theme = localStorage.getItem("theme");
+                  const storedColor = localStorage.getItem("primary-color");
+                  if (theme === "dark") document.documentElement.classList.add("dark");
+                  if (storedColor) {
+                    document.documentElement.style.setProperty("--primary", storedColor);
+                    document.documentElement.style.setProperty("--ring", storedColor);
+                  }
+                } catch (e) {}
               })();
             `,
           }}
