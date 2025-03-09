@@ -1,6 +1,5 @@
 "use client";
 
-import { ReactNode } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { TimelineItemType } from "@/types/experience";
@@ -37,7 +36,7 @@ export function TimelineItem({ item, isLast = false }: TimelineItemProps) {
         <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-primary bg-background">
           {renderIcon()}
         </div>
-        {!isLast && <div className="flex-1 w-[2px] bg-border mt-3"></div>}
+        {!isLast && (<div className="flex-1 w-[2px] bg-border mt-3"></div>)}
       </div>
       <div className="flex flex-col pb-8">
         <div className="flex flex-col">

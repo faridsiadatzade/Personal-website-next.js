@@ -16,7 +16,7 @@ export function HeroSection({ profile, className }: HeroSectionProps) {
       transition: {
         staggerChildren: 0.2,
       },
-    },
+    }
   };
 
   const item = {
@@ -37,7 +37,7 @@ export function HeroSection({ profile, className }: HeroSectionProps) {
           variants={item} 
           className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
         >
-          Hello, I'm{" "}
+          Hello, I&apos;m{" "}
           <span className="font-serif italic text-primary">
             {profile.fullName}
           </span>

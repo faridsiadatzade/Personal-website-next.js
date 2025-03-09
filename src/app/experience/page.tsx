@@ -5,8 +5,8 @@ import { ExperienceItem, EducationItem } from "@/types/experience";
 import tadbir from "@/assets/images/companies/tadbir.jpeg";
 import parham from "@/assets/images/companies/parham.jpeg";
 import nokarto from "@/assets/images/companies/nokarto.jpeg";
-import shirazUni from "@/assets/images/universities/shiraz.jpeg";
-import shahroodUni from "@/assets/images/universities/shahrood.jpeg";
+// import shirazUni from "@/assets/images/universities/shiraz.jpeg";
+// import shahroodUni from "@/assets/images/universities/shahrood.jpeg";
 
 const workExperience: ExperienceItem[] = [
   {
