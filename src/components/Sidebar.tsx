@@ -30,7 +30,7 @@ const Sidebar = () => {
     { name: "About", icon: User, path: "/about" },
     { name: "Portfolio", icon: BriefcaseBusiness, path: "/portfolio" },
     { name: "Education", icon: GraduationCap, path: "/education" },
-    { name: "Contant", icon: MessagesSquare, path: "/contant" },
+    { name: "Contact", icon: MessagesSquare, path: "/contact" },
   ];
 
   return (
