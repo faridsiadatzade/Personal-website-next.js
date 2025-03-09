@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -45,12 +45,16 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`flex min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`h-full ${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
-          <Sidebar />
-          <main className="flex-1">{children}</main>
+          <div className="flex min-h-screen bg-background">
+            <Sidebar />
+            <main className="flex-1 overflow-auto">
+              <div className="container mx-auto">
+                {children}
+              </div>
+            </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>
