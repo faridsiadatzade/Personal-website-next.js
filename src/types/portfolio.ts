@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface PortfolioInfo {
   title: string;
   subtitle: string;
@@ -5,7 +7,7 @@ export interface PortfolioInfo {
   projects: {
     title: string;
     description: string;
-    image: string;
+    image: StaticImageData;
     technologies: string[];
     link: string;
     github?: string;

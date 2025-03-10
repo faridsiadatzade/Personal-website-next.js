@@ -27,7 +27,7 @@ const workExperience: ExperienceItem[] = [
   {
     title: "Frontend Developer",
     subtitle: "Parham Smart Co.",
-    date: "2018 - 2020",
+    date: "2019 - 2020",
     logo: parham,
     location: "Tehran, Iran",
     technologies: ["React", "JavaScript", "SCSS", "RESTful APIs"],
@@ -41,7 +41,7 @@ const workExperience: ExperienceItem[] = [
   {
     title: "Web Developer",
     subtitle: "Nokarto",
-    date: "2016 - 2018",
+    date: "2019 - 2019",
     logo: nokarto,
     location: "Tehran, Iran",
     technologies: ["HTML", "CSS", "JavaScript", "jQuery", "PHP"],

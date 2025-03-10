@@ -3,6 +3,9 @@
 import { PortfolioSection } from "@/components/sections/PortfolioSection";
 import { PortfolioInfo } from "@/types/portfolio";
 import { motion } from "framer-motion";
+import personalWeb from "@/assets/images/portfolio/personal-website.png";
+import hamrahplus from "@/assets/images/portfolio/hamrahplus.png";
+import adminplus from "@/assets/images/portfolio/adminplus.png";
 
 const portfolioData: PortfolioInfo = {
   title: "Portfolio",
@@ -12,26 +15,26 @@ const portfolioData: PortfolioInfo = {
     {
       title: "Personal Website",
       description: "A modern personal website built with Next.js, TypeScript, and Tailwind CSS. Features include dark mode, animations, and responsive design.",
-      image: "/projects/personal-website.jpg",
+      image: personalWeb,
       technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      link: "https://github.com/yourusername/personal-website",
-    //   github: "https://github.com/yourusername/personal-website",
+      link: "https://faridsi.ir",
+      github: "https://github.com/faridsiadatzade/personal-website-next.js",
     },
     {
-      title: "E-commerce Platform",
+      title: "Admin Plus",
       description: "A full-stack e-commerce platform with features like product management, shopping cart, and user authentication.",
-      image: "/projects/ecommerce.jpg",
-      technologies: ["React", "Node.js", "MongoDB", "Express"],
-      link: "https://ecommerce-demo.com",
-      github: "https://github.com/yourusername/ecommerce"
+      image: adminplus,
+      technologies: ["React", "TypeScript", "Redux", "material-ui"],
+      link: "https://adminplus.refahbroker.ir",
+    //   github: "https://github.com/yourusername/ecommerce"
     },
     {
-      title: "Task Management App",
+      title: "Hamrah Plus",
       description: "A collaborative task management application with real-time updates and team collaboration features.",
-      image: "/projects/task-manager.jpg",
-      technologies: ["Vue.js", "Firebase", "Vuex", "Tailwind CSS"],
-      link: "https://task-manager-demo.com",
-      github: "https://github.com/yourusername/task-manager"
+      image: hamrahplus,
+      technologies: ["JavaScript", "PWA",],
+      link: "https://mobile.ipb.ir",
+    //   github: "https://github.com/yourusername/task-manager"
     }
   ]
 };

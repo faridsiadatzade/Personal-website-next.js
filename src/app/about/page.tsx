@@ -12,10 +12,10 @@ const aboutData: AboutInfo = {
   ],
   personalInfo: {
     "Name": "Farid Siadatzadeh",
-    "Age": "27",
+    "Age": "28",
     "Location": "Tehran, Iran",
     "Experience": "5+ Years",
-    "Email": "farid.siadatzadeh@gmail.com",
+    "Email": "fsiadatzade@gmail.com",
     "Languages": "Persian (Native), English (Professional)",
     "Availability": "Open to Opportunities",
     "Remote": "Available for Remote Work"
@@ -67,9 +67,9 @@ const aboutData: AboutInfo = {
       name: "Other Skills",
       skills: [
         { name: "Git & Version Control", level: 90 },
-        { name: "UI/UX Design", level: 85 },
         { name: "Node.js", level: 75 },
         { name: "Testing (Jest, RTL)", level: 80 },
+        { name: "UX", level: 60 },
         { name: "Agile Methodologies", level: 85 }
       ]
     }
