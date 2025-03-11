@@ -42,6 +42,7 @@ export function ContactSection({ data, className }: ContactSectionProps) {
       await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
       setSubmitStatus('success');
     } catch (error) {
+      console.error('Form submission failed:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -100,7 +101,7 @@ export function ContactSection({ data, className }: ContactSectionProps) {
                   exit={{ opacity: 0, y: -20 }}
                   className="p-4 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-lg mb-6"
                 >
-                  Thank you for your message! I'll get back to you soon.
+                  Thank you for your message! I&apos;ll get back to you soon.
                 </motion.div>
               )}
               {submitStatus === 'error' && (
