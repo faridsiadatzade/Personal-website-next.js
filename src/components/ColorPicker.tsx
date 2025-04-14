@@ -23,7 +23,16 @@ export default function ColorPicker() {
         className="p-2 rounded-full shadow-lg bg-card hover:bg-accent transition-colors"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <Palette className="w-6 h-6" />
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ 
+            duration: 10, 
+            repeat: Infinity, 
+            ease: "linear" 
+          }}
+        >
+          <Palette className="w-6 h-6" />
+        </motion.div>
       </button>
 
       <AnimatePresence>
@@ -51,6 +60,18 @@ export default function ColorPicker() {
                   key={color}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
+                  animate={{ rotate: 360 }}
+                  transition={{ 
+                    rotate: {
+                      duration: 20,
+                      repeat: Infinity,
+                      ease: "linear"
+                    },
+                    scale: { 
+                      type: "spring", 
+                      stiffness: 500
+                    }
+                  }}
                   className={`
                     w-8 h-8 rounded-full border-2 transition-all
                     ${primaryColor === color ? "border-primary scale-110" : "border-border"}

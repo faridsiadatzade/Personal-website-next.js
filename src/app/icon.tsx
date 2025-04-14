@@ -12,7 +12,7 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 24,
+          fontSize: 22,
           background: 'linear-gradient(to bottom right, #e11d48, #220C0F)',
           width: '100%',
           height: '100%',
@@ -24,7 +24,7 @@ export default function Icon() {
           fontWeight: 'bold',
         }}
       >
-        F
+        FS
       </div>
     ),
     { ...size }

@@ -17,9 +17,27 @@ export default function ThemeSwitcher() {
         onClick={() => setIsOpen(!isOpen)}
       >
         {theme === "dark" ? (
-          <Moon className="w-6 h-6" />
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ 
+              duration: 10, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+          >
+            <Moon className="w-6 h-6" />
+          </motion.div>
         ) : (
-          <Sun className="w-6 h-6" />
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ 
+              duration: 10, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+          >
+            <Sun className="w-6 h-6" />
+          </motion.div>
         )}
       </button>
 
@@ -55,7 +73,16 @@ export default function ThemeSwitcher() {
                   setIsOpen(false);
                 }}
               >
-                <Sun className="w-4 h-4" />
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ 
+                    duration: 15, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
+                >
+                  <Sun className="w-4 h-4" />
+                </motion.div>
               </motion.button>
 
               <motion.button
@@ -70,7 +97,16 @@ export default function ThemeSwitcher() {
                   setIsOpen(false);
                 }}
               >
-                <Moon className="w-4 h-4" />
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ 
+                    duration: 15, 
+                    repeat: Infinity, 
+                    ease: "linear" 
+                  }}
+                >
+                  <Moon className="w-4 h-4" />
+                </motion.div>
               </motion.button>
             </motion.div>
           </>

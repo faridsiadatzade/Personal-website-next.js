@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:docs": "next build && echo > docs/.nojekyll",
+    "export": "next export -o docs",
+    "build:static": "next build && next export -o docs && echo > docs/.nojekyll",
     "start": "next start",
     "lint": "next lint"
   },
