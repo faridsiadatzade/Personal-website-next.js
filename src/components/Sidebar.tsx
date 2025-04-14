@@ -110,6 +110,32 @@ const Sidebar = () => {
       </motion.aside>
 
       <div className="md:pl-64" />
+
+      {pathname !== '/' && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              'itemListElement': [
+                {
+                  '@type': 'ListItem',
+                  'position': 1,
+                  'name': 'Home',
+                  'item': 'https://faridsi.ir'
+                },
+                {
+                  '@type': 'ListItem',
+                  'position': 2,
+                  'name': pathname.substring(1).charAt(0).toUpperCase() + pathname.substring(2),
+                  'item': `https://faridsi.ir${pathname}`
+                }
+              ]
+            })
+          }}
+        />
+      )}
     </>
   );
 };
