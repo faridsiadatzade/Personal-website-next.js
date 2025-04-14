@@ -5,7 +5,12 @@ import avatar from "@/assets/images/personeli.png";
 const MyPhoto = () => {
   return (
     <div className="relative inline-block font-sans text-4xl font-bold text-gray-900">
-      <Image src={avatar} width={250} alt="Picture of the author" />
+      <Image 
+        src={avatar} 
+        width={250} 
+        alt="Farid Siadatzade - Frontend Developer from Tehran, Iran" 
+        priority 
+      />
       <div className="absolute top-[-20px] left-[-30px] w-16 h-16 border-t-8 border-l-8 border-primary"></div>
       <div className="absolute top-[-20px] right-[-20px] w-0 h-0 border-r-4 border-primary"></div>
       <div className="absolute bottom-[-20px] left-[-20px] w-0 h-0 border-l-4 border-primary"></div>

@@ -15,8 +15,37 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Farid Siadatzade - فرید سیادت زاده",
-  description: "Farid Siadatzade Web Developer",
+  title: "Farid Siadatzade - Frontend Developer | فرید سیادت زاده",
+  description: "Experienced Frontend Developer specializing in React, TypeScript, and Next.js with 5+ years of experience creating responsive web applications.",
+  keywords: "frontend developer, react developer, typescript, next.js, web development, farid siadatzade, frontend engineer",
+  authors: [{ name: "Farid Siadatzade", url: "https://faridsi.ir" }],
+  creator: "Farid Siadatzade",
+  robots: "index, follow",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://faridsi.ir",
+    siteName: "Farid Siadatzade - Frontend Developer",
+    title: "Farid Siadatzade - Frontend Developer Portfolio",
+    description: "Experienced Frontend Developer specializing in React, TypeScript, and Next.js with 5+ years of experience creating responsive web applications.",
+    images: [
+      {
+        url: "/og-image.jpg", 
+        width: 1200,
+        height: 630,
+        alt: "Farid Siadatzade - Frontend Developer"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Farid Siadatzade - Frontend Developer",
+    description: "Frontend Developer specializing in React, TypeScript, and Next.js",
+    images: ["/og-image.jpg"]
+  },
+  alternates: {
+    canonical: "https://faridsi.ir"
+  }
 };
 
 export default function RootLayout({
@@ -42,6 +71,42 @@ export default function RootLayout({
                 } catch (e) {}
               })();
             `,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Farid Siadatzade",
+              "url": "https://faridsi.ir",
+              "image": "https://faridsi.ir/images/personeli.png",
+              "jobTitle": "Frontend Developer",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "Tadbir Pardaz IT Co."
+              },
+              "alumniOf": [
+                {
+                  "@type": "CollegeOrUniversity",
+                  "name": "Shiraz University"
+                }
+              ],
+              "knowsAbout": [
+                "React", 
+                "TypeScript", 
+                "Next.js", 
+                "Redux", 
+                "Material-UI", 
+                "Tailwind CSS", 
+                "Web Development"
+              ],
+              "sameAs": [
+                "https://github.com/faridsiadatzade",
+                "https://linkedin.com/in/farid-siadatzadeh"
+              ]
+            })
           }}
         />
       </head>
