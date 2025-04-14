@@ -1,11 +1,20 @@
 "use client";
 
-import { PortfolioSection } from "@/components/sections/PortfolioSection";
+import dynamic from 'next/dynamic';
 import { PortfolioInfo } from "@/types/portfolio";
 import { motion } from "framer-motion";
 import personalWeb from "@/assets/images/portfolio/personal-website.png";
 import hamrahplus from "@/assets/images/portfolio/hamrahplus.png";
 import adminplus from "@/assets/images/portfolio/adminplus.png";
+import PortfolioSectionSkeleton from '@/components/loading/PortfolioSectionSkeleton';
+
+const DynamicPortfolioSection = dynamic(() => 
+  import('@/components/sections/PortfolioSection').then(mod => mod.PortfolioSection),
+  {
+    loading: () => <PortfolioSectionSkeleton />,
+    ssr: false,
+  }
+);
 
 const portfolioData: PortfolioInfo = {
   title: "Portfolio",
@@ -51,7 +60,7 @@ export default function Portfolio() {
         <span className="block mt-2 w-20 border-b-4 border-primary"></span>
         <span className="block mt-2 w-9 border-b-4 border-primary"></span>
       </motion.div>
-      <PortfolioSection data={portfolioData} />
+      <DynamicPortfolioSection data={portfolioData} />
     </section>
   );
 }

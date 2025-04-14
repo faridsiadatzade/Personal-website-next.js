@@ -8,7 +8,7 @@ import MyPhoto from "@/components/MyPhoto";
 import { Github, Linkedin, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function HeroSection({ profile, className }: HeroSectionProps) {
+export default function HeroSection({ profile, className }: HeroSectionProps) {
   const container = {
     hidden: { opacity: 0 },
     show: {

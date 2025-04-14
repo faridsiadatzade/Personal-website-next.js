@@ -1,8 +1,17 @@
 "use client";
 
-import { ContactSection } from "@/components/sections/ContactSection";
+import dynamic from 'next/dynamic';
 import { ContactInfo } from "@/types/contact";
 import { motion } from "framer-motion";
+import ContactSectionSkeleton from '@/components/loading/ContactSectionSkeleton';
+
+const DynamicContactSection = dynamic(() => 
+  import('@/components/sections/ContactSection').then(mod => mod.ContactSection),
+  {
+    loading: () => <ContactSectionSkeleton />,
+    ssr: false,
+  }
+);
 
 const contactData: ContactInfo = {
   title: "Contact Me",
@@ -64,7 +73,7 @@ export default function Contact() {
         <span className="block mt-2 w-20 border-b-4 border-primary"></span>
         <span className="block mt-2 w-9 border-b-4 border-primary"></span>
       </motion.div>
-      <ContactSection data={contactData} />
+      <DynamicContactSection data={contactData} />
     </section>
   );
 }

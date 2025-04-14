@@ -1,12 +1,21 @@
 "use client";
 
-import { Timeline } from "@/components/Timeline";
+import dynamic from 'next/dynamic';
 import { ExperienceItem, EducationItem } from "@/types/experience";
 import tadbir from "@/assets/images/companies/tadbir.jpeg";
 import parham from "@/assets/images/companies/parham.jpeg";
 import nokarto from "@/assets/images/companies/nokarto.jpeg";
 // import shirazUni from "@/assets/images/universities/shiraz.jpeg";
 // import shahroodUni from "@/assets/images/universities/shahrood.jpeg";
+import ExperienceSectionSkeleton from '@/components/loading/ExperienceSectionSkeleton';
+
+const DynamicTimeline = dynamic(() => 
+  import('@/components/Timeline').then(mod => mod.Timeline),
+  {
+    loading: () => <div className="animate-pulse h-96 w-full bg-gray-200 dark:bg-gray-700 rounded-md"></div>,
+    ssr: false,
+  }
+);
 
 const workExperience: ExperienceItem[] = [
   {
@@ -110,11 +119,11 @@ export default function Experience() {
         <div className="grid lg:grid-cols-2 gap-8">
           <div>
             <h4 className="text-2xl font-bold mb-6">Work Experience</h4>
-            <Timeline items={workExperience} />
+            <DynamicTimeline items={workExperience} />
           </div>
           <div>
             <h4 className="text-2xl font-bold mb-6">Education</h4>
-            <Timeline items={education} />
+            <DynamicTimeline items={education} />
           </div>
         </div>
       </div>

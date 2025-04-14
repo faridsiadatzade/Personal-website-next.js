@@ -1,7 +1,13 @@
 "use client";
 
-import { AboutSection } from "@/components/sections/AboutSection";
+import dynamic from 'next/dynamic';
 import { AboutInfo } from "@/types/about";
+import AboutSectionSkeleton from '@/components/loading/AboutSectionSkeleton';
+
+const DynamicAboutSection = dynamic(() => import('@/components/sections/AboutSection').then(mod => mod.AboutSection), {
+  loading: () => <AboutSectionSkeleton />,
+  ssr: false,
+});
 
 const aboutData: AboutInfo = {
   title: "About Me",
@@ -79,7 +85,7 @@ const aboutData: AboutInfo = {
 export default function About() {
   return (
     <div className="container mx-auto py-8">
-      <AboutSection data={aboutData} />
+      <DynamicAboutSection data={aboutData} />
     </div>
   );
 }

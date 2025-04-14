@@ -1,5 +1,8 @@
-import { HeroSection } from "@/components/sections/HeroSection";
+"use client";
+
+import dynamic from 'next/dynamic';
 import { ProfileInfo } from "@/types/profile";
+import HeroSectionSkeleton from '@/components/loading/HeroSectionSkeleton';
 
 const profileData: ProfileInfo = {
   fullName: "Farid Siadatzadeh",
@@ -22,6 +25,11 @@ const profileData: ProfileInfo = {
   }
 };
 
+const DynamicHeroSection = dynamic(() => import('@/components/sections/HeroSection'), {
+  loading: () => <HeroSectionSkeleton />,
+  ssr: false,
+});
+
 export default function Home() {
-  return <HeroSection profile={profileData} />;
+  return <DynamicHeroSection profile={profileData} />;
 }
