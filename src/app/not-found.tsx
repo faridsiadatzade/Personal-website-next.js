@@ -14,13 +14,13 @@ export default function NotFound() {
         className="max-w-2xl mx-auto"
       >
         <h1 className="text-9xl font-bold text-primary">404</h1>
-        <h2 className="text-3xl md:text-4xl font-bold mt-4">صفحه مورد نظر یافت نشد</h2>
+        <h2 className="text-3xl md:text-4xl font-bold mt-4">Page Not Found</h2>
         <p className="text-lg text-muted-foreground mt-4 mb-8">
-          صفحه‌ای که به دنبال آن هستید وجود ندارد یا به آدرس دیگری منتقل شده است.
+            The page you are looking for does not exist or has been moved to a different address.
         </p>
         <Link href="/">
           <Button size="lg">
-            بازگشت به صفحه اصلی
+            Back to Home
           </Button>
         </Link>
       </motion.div>
