@@ -19,7 +19,7 @@ export function middleware(request: NextRequest) {
   
   // هدایت به مسیر با پیش‌وند زبان
   const url = request.nextUrl.clone();
-  url.pathname = `/${preferredLanguage}${pathname === '/' ? '' : pathname}`;
+  url.pathname = `/${preferredLanguage}${pathname === '/' ? 'en' : pathname}`;
   
   return NextResponse.redirect(url);
 } 
