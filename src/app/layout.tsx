@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://faridsi.ir"),
   title: "Farid Siadatzade - Frontend Developer | فرید سیادت زاده",
   description: "Experienced Frontend Developer specializing in React, TypeScript, and Next.js with 5+ years of experience creating responsive web applications.",
   keywords: "frontend developer, react developer, typescript, next.js, web development, farid siadatzade, frontend engineer",
