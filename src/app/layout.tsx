@@ -21,6 +21,15 @@ export const metadata: Metadata = {
   authors: [{ name: "Farid Siadatzade", url: "https://faridsi.ir" }],
   creator: "Farid Siadatzade",
   robots: "index, follow",
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.svg' }
+    ],
+    apple: [
+      { url: '/icons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -56,9 +65,6 @@ export default function RootLayout({
   return (
     <html lang="en" dir="ltr" className="h-full">
       <head>
-        <link rel="icon" href="/icon.png" type="image/png" sizes="32x32" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/icon-192.png" />
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
