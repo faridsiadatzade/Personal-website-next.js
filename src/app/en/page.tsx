@@ -31,6 +31,5 @@ const DynamicHeroSection = dynamic(() => import('@/components/sections/HeroSecti
 });
 
 export default function Home() {
-  // این صفحه هرگز نمایش داده نمی‌شود، چون middleware مسیر را تغییر می‌دهد
-  return null;
-}
+  return <DynamicHeroSection profile={profileData} />;
+} 

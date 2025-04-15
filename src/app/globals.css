@@ -2,8 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  --primary: hsl(217.2 91.2% 59.8%);
+  --primary-foreground: hsl(0 0% 98%);
+  --ring: hsl(217.2 91.2% 59.8%);
+}
+
+.dark {
+  --primary: hsl(217.2 91.2% 59.8%);
+  --primary-foreground: hsl(0 0% 98%);
+  --ring: hsl(217.2 91.2% 59.8%);
 }
 
 @layer base {
@@ -12,21 +20,14 @@ body {
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 346.8 77.2% 49.8%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 346.8 77.2% 49.8%;
     --radius: 0.5rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -36,38 +37,169 @@ body {
   }
 
   .dark {
-    --background: 20 14.3% 4.1%;
-    --foreground: 0 0% 95%;
-    --card: 24 9.8% 10%;
-    --card-foreground: 0 0% 95%;
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 346.8 77.2% 49.8%;
-    --primary-foreground: 355.7 100% 97.3%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
-    --accent: 12 6.5% 15.1%;
+    --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 85.7% 97.3%;
-    --border: 240 3.7% 10.9%;
-    --input: 240 3.7% 10.9%;
-    --ring: 346.8 77.2% 49.8%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --radius: 0.5rem;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-secondary text-foreground;
+    @apply bg-background text-foreground;
   }
+  
+  /* تنظیمات پایه فونت‌ها */
+  html {
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* RTL Specific Styles */
+html.rtl {
+  direction: rtl;
+  text-align: right;
+  font-feature-settings: "rlig" 1, "calt" 1, "ss01";
+}
+
+/* تنظیمات اضافی برای فونت فارسی */
+html.rtl h1, 
+html.rtl h2, 
+html.rtl h3, 
+html.rtl h4, 
+html.rtl h5, 
+html.rtl h6 {
+  font-family: var(--font-vazir), sans-serif !important;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+html.rtl p, 
+html.rtl span, 
+html.rtl a, 
+html.rtl div, 
+html.rtl button, 
+html.rtl input, 
+html.rtl textarea {
+  font-family: var(--font-vazir), sans-serif !important;
+  letter-spacing: 0;
+}
+
+/* RTL fixes for flexbox and margins */
+html.rtl .ml-1,
+html.rtl .ml-2,
+html.rtl .ml-3,
+html.rtl .ml-4,
+html.rtl .ml-5,
+html.rtl .ml-6,
+html.rtl .ml-8 {
+  margin-left: 0 !important;
+}
+
+html.rtl .ml-1 { margin-right: 0.25rem !important; }
+html.rtl .ml-2 { margin-right: 0.5rem !important; }
+html.rtl .ml-3 { margin-right: 0.75rem !important; }
+html.rtl .ml-4 { margin-right: 1rem !important; }
+html.rtl .ml-5 { margin-right: 1.25rem !important; }
+html.rtl .ml-6 { margin-right: 1.5rem !important; }
+html.rtl .ml-8 { margin-right: 2rem !important; }
+
+html.rtl .mr-1,
+html.rtl .mr-2,
+html.rtl .mr-3,
+html.rtl .mr-4,
+html.rtl .mr-5,
+html.rtl .mr-6,
+html.rtl .mr-8 {
+  margin-right: 0 !important;
+}
+
+html.rtl .mr-1 { margin-left: 0.25rem !important; }
+html.rtl .mr-2 { margin-left: 0.5rem !important; }
+html.rtl .mr-3 { margin-left: 0.75rem !important; }
+html.rtl .mr-4 { margin-left: 1rem !important; }
+html.rtl .mr-5 { margin-left: 1.25rem !important; }
+html.rtl .mr-6 { margin-left: 1.5rem !important; }
+html.rtl .mr-8 { margin-left: 2rem !important; }
+
+/* RTL icon direction adjustments */
+html.rtl svg {
+  transform: scaleX(1);
+}
+
+/* تنظیمات اعداد فارسی */
+html.rtl .farsi-digits {
+  font-feature-settings: "ss01";
+}
+
+/* بهبود فاصله بین حروف فارسی */
+html.rtl {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+/* بهبود کرنینگ و لیگاچر */
+html.rtl, 
+html.rtl * {
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures contextual;
+  font-variant-numeric: proportional-nums;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/vazir/Vazir.woff2') format('woff2'),
+       url('/fonts/vazir/Vazir.woff') format('woff'),
+       url('/fonts/vazir/Vazir.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/vazir/Vazir-Bold.woff2') format('woff2'),
+       url('/fonts/vazir/Vazir-Bold.woff') format('woff'),
+       url('/fonts/vazir/Vazir-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/vazir/Vazir-Light.woff2') format('woff2'),
+       url('/fonts/vazir/Vazir-Light.woff') format('woff'),
+       url('/fonts/vazir/Vazir-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('/fonts/vazir/Vazir-Medium.woff2') format('woff2'),
+       url('/fonts/vazir/Vazir-Medium.woff') format('woff'),
+       url('/fonts/vazir/Vazir-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }

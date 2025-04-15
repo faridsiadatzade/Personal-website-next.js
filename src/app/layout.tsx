@@ -1,7 +1,9 @@
 import Sidebar from "@/components/Sidebar";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/context/ThemeContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { Geist, Geist_Mono } from "next/font/google";
+import localFont from 'next/font/local';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,6 +14,34 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+// فونت وزیر به عنوان فونت محلی
+const vazirFont = localFont({
+  src: [
+    {
+      path: '../../public/fonts/vazir/Vazir.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/vazir/Vazir-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/vazir/Vazir-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/vazir/Vazir-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-vazir',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -60,11 +90,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" dir="ltr" className="h-full">
+    <html>
       <head>
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -125,16 +155,18 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`h-full ${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`h-full ${geistSans.variable} ${geistMono.variable} ${vazirFont.variable} antialiased`}>
         <ThemeProvider>
-          <div className="flex min-h-screen bg-background">
-            <Sidebar />
-            <main className="flex-1 overflow-auto">
-              <div className="container mx-auto md:p-8 p-4 pt-16 md:pt-8">
-                {children}
-              </div>
-            </main>
-          </div>
+          <LanguageProvider>
+            <div className="flex min-h-screen bg-background">
+              <Sidebar />
+              <main className="flex-1 overflow-auto">
+                <div className="container mx-auto md:p-8 p-4 pt-16 md:pt-8">
+                  {children}
+                </div>
+              </main>
+            </div>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

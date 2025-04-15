@@ -7,8 +7,11 @@ import { HeroSectionProps } from "@/types/profile";
 import MyPhoto from "@/components/MyPhoto";
 import { Github, Linkedin, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HeroSection({ profile, className }: HeroSectionProps) {
+  const { t } = useLanguage();
+  
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -37,7 +40,7 @@ export default function HeroSection({ profile, className }: HeroSectionProps) {
           variants={item} 
           className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
         >
-          Hello, I&apos;m{" "}
+          {t("hello_im")}{" "}
           <span className="font-serif italic text-primary">
             {profile.fullName}
           </span>
@@ -77,12 +80,12 @@ export default function HeroSection({ profile, className }: HeroSectionProps) {
         >
           <Link href="/about">
             <Button size="lg" className="rounded-full">
-              More About Me
+              {t("more_about_me")}
             </Button>
           </Link>
           <Link href="/contact">
             <Button size="lg" variant="outline" className="rounded-full">
-              Get in Touch
+              {t("get_in_touch")}
             </Button>
           </Link>
         </motion.div>

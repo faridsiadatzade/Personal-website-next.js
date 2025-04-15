@@ -5,9 +5,9 @@ import { ProfileInfo } from "@/types/profile";
 import HeroSectionSkeleton from '@/components/loading/HeroSectionSkeleton';
 
 const profileData: ProfileInfo = {
-  fullName: "Farid Siadatzadeh",
-  role: "Frontend Developer",
-  shortBio: "Passionate and creative frontend developer with over 5 years of experience developing cutting-edge and robust code for high-volume businesses. Skilled in React, TypeScript, and modern web technologies.",
+  fullName: "فرید سیادت زاده",
+  role: "توسعه دهنده فرانت‌اند",
+  shortBio: "توسعه دهنده فرانت‌اند با بیش از ۵ سال تجربه در توسعه کدهای پیشرفته و مقاوم برای کسب‌وکارهای پرحجم. مسلط به React، TypeScript و فناوری‌های وب مدرن.",
   skills: [
     "React",
     "TypeScript",
@@ -31,6 +31,5 @@ const DynamicHeroSection = dynamic(() => import('@/components/sections/HeroSecti
 });
 
 export default function Home() {
-  // این صفحه هرگز نمایش داده نمی‌شود، چون middleware مسیر را تغییر می‌دهد
-  return null;
-}
+  return <DynamicHeroSection profile={profileData} />;
+} 
