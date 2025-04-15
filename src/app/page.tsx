@@ -1,35 +1,5 @@
 "use client";
 
-import dynamic from 'next/dynamic';
-import { ProfileInfo } from "@/types/profile";
-import HeroSectionSkeleton from '@/components/loading/HeroSectionSkeleton';
-
-const profileData: ProfileInfo = {
-  fullName: "Farid Siadatzadeh",
-  role: "Frontend Developer",
-  shortBio: "Passionate and creative frontend developer with over 5 years of experience developing cutting-edge and robust code for high-volume businesses. Skilled in React, TypeScript, and modern web technologies.",
-  skills: [
-    "React",
-    "TypeScript",
-    "Next.js",
-    "Redux",
-    "Material-UI",
-    "Tailwind CSS",
-    "Node.js",
-    "Git"
-  ],
-  socialLinks: {
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/farid-siadatzadeh",
-    phone: "tel:+989360010251",
-  }
-};
-
-const DynamicHeroSection = dynamic(() => import('@/components/sections/HeroSection'), {
-  loading: () => <HeroSectionSkeleton />,
-  ssr: false,
-});
-
 export default function Home() {
   // این صفحه هرگز نمایش داده نمی‌شود، چون middleware مسیر را تغییر می‌دهد
   return null;
