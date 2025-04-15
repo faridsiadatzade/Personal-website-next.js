@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export default function HeroSectionSkeleton({ className }: { className?: string }) {

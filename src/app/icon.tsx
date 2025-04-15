@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 // Metadata to generate icon.png in the /public directory
-export const runtime = 'edge';
+export const dynamic = 'force-static';
 export const contentType = 'image/png';
 export const size = { width: 32, height: 32 };
 export const alt = 'Farid Siadatzade';

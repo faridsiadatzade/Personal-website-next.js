@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
+export const dynamic = 'force-static';
 export const contentType = 'image/png';
 export const size = { width: 192, height: 192 };
 

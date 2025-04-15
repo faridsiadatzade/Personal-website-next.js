@@ -5,9 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:docs": "next build && echo > docs/.nojekyll",
-    "export": "next export -o docs",
-    "build:static": "next build && next export -o docs && echo > docs/.nojekyll",
+    "build:docs": "cross-env BUILD_TARGET=docs next build && echo > docs/.nojekyll",
+    "export": "cross-env BUILD_TARGET=docs next export -o docs",
+    "build:static": "cross-env BUILD_TARGET=docs next build && echo > docs/.nojekyll",
+    "clean": "rimraf .next docs",
+    "clean:dev": "rimraf .next",
+    "clean:docs": "rimraf docs",
     "start": "next start",
     "lint": "next lint"
   },
@@ -29,9 +32,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8",
+    "rimraf": "^6.0.1",
     "sharp": "^0.34.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"

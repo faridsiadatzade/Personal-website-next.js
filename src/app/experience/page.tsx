@@ -7,7 +7,6 @@ import parham from "@/assets/images/companies/parham.jpeg";
 import nokarto from "@/assets/images/companies/nokarto.jpeg";
 // import shirazUni from "@/assets/images/universities/shiraz.jpeg";
 // import shahroodUni from "@/assets/images/universities/shahrood.jpeg";
-import ExperienceSectionSkeleton from '@/components/loading/ExperienceSectionSkeleton';
 
 const DynamicTimeline = dynamic(() => 
   import('@/components/Timeline').then(mod => mod.Timeline),
