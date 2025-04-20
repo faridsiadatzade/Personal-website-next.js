@@ -6,26 +6,23 @@ export const config = {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  
-  //If the path starts with /fa or /en, we return the path unchanged.
-  const localePattern = /^\/(fa|en)(\/|$)/;
-  if (localePattern.test(pathname)) {
+
+  // Only check the actual path (not the domain)
+  const firstSegment = pathname.split('/')[1];
+
+  // If the path starts with /fa or /en, continue without changing
+  if (firstSegment === 'fa' || firstSegment === 'en') {
     return NextResponse.next();
   }
-  console.log('pathname',pathname);
-  console.log('localePattern',localePattern.test(pathname));
-  
-  // if (/^\/fa($|\/)/.test(pathname) || /^\/en($|\/)/.test(pathname)) {
-  //   return NextResponse.next();
-  // }
 
-  //Get the user's preferred language from the Accept-Language header.
+  // Detect language with more accurate header
   const acceptLanguage = request.headers.get('accept-language') || '';
-  const preferredLanguage = acceptLanguage.includes('fa') || acceptLanguage.includes('fa-IR') ? 'fa' : 'en';
+  const preferredLanguage =
+    acceptLanguage.toLowerCase().includes('fa') ? 'fa' : 'en';
 
-  //Redirect to the path with the preferred language prefix.
+  // Create a new path with the appropriate language
   const url = request.nextUrl.clone();
   url.pathname = `/${preferredLanguage}${pathname === '/' ? '' : pathname}`;
-  
+
   return NextResponse.redirect(url);
-} 
+}
