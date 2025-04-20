@@ -5,21 +5,24 @@ export const config = {
 };
 
 export function middleware(request: NextRequest) {
-  // استخراج مسیر درخواست
   const { pathname } = request.nextUrl;
   
-  // اگر مسیر با /fa یا /en شروع شود، مسیر را بدون تغییر برمی‌گردانیم
-  if (/^\/fa($|\/)/.test(pathname) || /^\/en($|\/)/.test(pathname)) {
+  //If the path starts with /fa or /en, we return the path unchanged.
+  const pathLocale = pathname.split('/')[1];
+  if (pathLocale === 'fa' || pathLocale === 'en') {
     return NextResponse.next();
   }
-  
-  // زبان پیش‌فرض کاربر را از هدر Accept-Language استخراج می‌کنیم
+  // if (/^\/fa($|\/)/.test(pathname) || /^\/en($|\/)/.test(pathname)) {
+  //   return NextResponse.next();
+  // }
+
+  //Get the user's preferred language from the Accept-Language header.
   const acceptLanguage = request.headers.get('accept-language') || '';
   const preferredLanguage = acceptLanguage.includes('fa') || acceptLanguage.includes('fa-IR') ? 'fa' : 'en';
-  
-  // هدایت به مسیر با پیش‌وند زبان
+
+  //Redirect to the path with the preferred language prefix.
   const url = request.nextUrl.clone();
-  url.pathname = `/${preferredLanguage}${pathname === '/' ? 'en' : pathname}`;
+  url.pathname = `/${preferredLanguage}${pathname === '/' ? '' : pathname}`;
   
   return NextResponse.redirect(url);
 } 
