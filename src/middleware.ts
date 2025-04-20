@@ -8,10 +8,13 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   
   //If the path starts with /fa or /en, we return the path unchanged.
-  const pathLocale = pathname.split('/')[1];
-  if (pathLocale === 'fa' || pathLocale === 'en') {
+  const localePattern = /^\/(fa|en)(\/|$)/;
+  if (localePattern.test(pathname)) {
     return NextResponse.next();
   }
+  console.log('pathname',pathname);
+  console.log('localePattern',localePattern.test(pathname));
+  
   // if (/^\/fa($|\/)/.test(pathname) || /^\/en($|\/)/.test(pathname)) {
   //   return NextResponse.next();
   // }
