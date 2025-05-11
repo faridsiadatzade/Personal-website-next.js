@@ -3,19 +3,15 @@ import { formatNumber } from '@/utils/persianUtils';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface PersianNumberProps {
-  number: string | number;
-  className?: string;
+  number: number;
 }
 
 /**
  * کامپوننت نمایش اعداد به صورت فارسی یا انگلیسی براساس زبان فعلی
  */
-export default function PersianNumber({ number, className }: PersianNumberProps) {
-  const { language } = useLanguage();
+export function PersianNumber({ number }: PersianNumberProps) {
+  const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  const persianNumber = number.toString().replace(/\d/g, (d) => persianDigits[parseInt(d)]);
   
-  return (
-    <span className={className}>
-      {formatNumber(number, language)}
-    </span>
-  );
+  return <span>{persianNumber}</span>;
 } 
