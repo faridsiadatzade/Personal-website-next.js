@@ -19,7 +19,7 @@ const profileData: ProfileInfo = {
     "Git"
   ],
   socialLinks: {
-    github: "https://github.com/yourusername",
+    github: "https://github.com/faridsiadatzade",
     linkedin: "https://linkedin.com/in/farid-siadatzadeh",
     phone: "tel:+989360010251",
   }

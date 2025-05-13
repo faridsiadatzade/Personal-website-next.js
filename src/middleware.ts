@@ -7,11 +7,19 @@ const defaultLocale: Locale = 'en';
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  // اگر مسیر خالی است، به مسیر پیش‌فرض ریدایرکت کن
+  if (pathname === '/') {
+    return NextResponse.redirect(new URL(`/${defaultLocale}`, request.url));
+  }
+
   // Skip if the request is for static files or API
   if (
-    /\\.(.*)$/.test(pathname) ||
+    /\.(.*)$/.test(pathname) ||
     pathname.startsWith('/_next') ||
-    pathname.startsWith('/api')
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/favicon') ||
+    pathname.startsWith('/robots') ||
+    pathname.startsWith('/sitemap')
   ) {
     return;
   }
@@ -24,7 +32,7 @@ export function middleware(request: NextRequest) {
   if (!pathnameHasLocale) {
     // Redirect to the default locale if no locale is present
     const newUrl = new URL(
-      `/${defaultLocale}${pathname === '/' ? '' : pathname}`,
+      `/${defaultLocale}${pathname}`,
       request.url
     );
     return NextResponse.redirect(newUrl);
@@ -43,5 +51,6 @@ export const config = {
      * - sitemap.xml (SEO file)
      */
     '/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)',
+    '/',  // اضافه کردن مسیر اصلی به matcher
   ],
 };
