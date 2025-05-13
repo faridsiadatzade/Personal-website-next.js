@@ -1,6 +1,22 @@
-import React from "react";
+'use client';
+
+import React, { useState, useEffect } from "react";
 
 const Logo = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="relative inline-block font-sans text-4xl font-bold opacity-0">
+        <span className="text-4xl font-serif italic">Farid</span>Si
+      </div>
+    );
+  }
+
   return (
     <div className="relative inline-block font-sans text-4xl font-bold">
       <span className="text-4xl font-serif italic">Farid</span>Si

@@ -7,46 +7,71 @@ interface ThemeContextProps {
   setPrimaryColor: (color: string) => void;
   theme: "light" | "dark";
   toggleTheme: () => void;
+  isReady: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [primaryColor, setPrimaryColor] = useState<string>(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("primary-color") || "346.8 77.2% 49.8%";
-    }
-    return "346.8 77.2% 49.8%";
-  });
+  // متغیر mounted برای کنترل وضعیت مانت شدن کامپوننت
+  const [mounted, setMounted] = useState(false);
   
-  const [theme, setTheme] = useState<"light" | "dark">(() => {
-    if (typeof window !== "undefined") {
-      return (localStorage.getItem("theme") as "light" | "dark") || "light";
-    }
-    return "light";
-  });
+  // مقادیر پیش‌فرض برای استفاده در سرور
+  const defaultPrimaryColor = "346.8 77.2% 49.8%";
+  const defaultTheme = "light";
+  
+  const [primaryColor, setPrimaryColor] = useState<string>(defaultPrimaryColor);
+  const [theme, setTheme] = useState<"light" | "dark">(defaultTheme);
+
+  // مانت شدن کامپوننت را کنترل می‌کنیم
+  useEffect(() => {
+    // فقط در کلاینت ساید مقادیر را از localStorage می‌خوانیم
+    const storedColor = localStorage.getItem("primary-color") || defaultPrimaryColor;
+    const storedTheme = (localStorage.getItem("theme") as "light" | "dark") || defaultTheme;
+    
+    setPrimaryColor(storedColor);
+    setTheme(storedTheme);
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
-    // We only need to handle class toggling here since the initial state is handled by the script in layout
+    if (!mounted) return;
+    
+    // تنظیم کلاس dark فقط در کلاینت
     document.documentElement.classList.toggle("dark", theme === "dark");
-  }, [theme]);
+  }, [theme, mounted]);
 
   useEffect(() => {
+    if (!mounted) return;
+    
+    // تنظیم رنگ اصلی فقط در کلاینت
     document.documentElement.style.setProperty("--primary", primaryColor);
     document.documentElement.style.setProperty("--ring", primaryColor);
     localStorage.setItem("primary-color", primaryColor);
-  }, [primaryColor]);
+  }, [primaryColor, mounted]);
 
   const toggleTheme = () => {
+    if (!mounted) return;
+    
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
     localStorage.setItem("theme", newTheme);
   };
 
+  // اگر کامپوننت هنوز مانت نشده، فقط children را نمایش می‌دهیم
+  if (!mounted) {
+    return <>{children}</>;
+  }
+
   return (
     <ThemeContext.Provider
-      value={{ primaryColor, setPrimaryColor, theme, toggleTheme }}
+      value={{ 
+        primaryColor, 
+        setPrimaryColor, 
+        theme, 
+        toggleTheme,
+        isReady: mounted 
+      }}
     >
       {children}
     </ThemeContext.Provider>

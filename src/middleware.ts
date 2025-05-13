@@ -1,28 +1,47 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
+import { type Locale } from '@/lib/i18n';
 
-export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|icons|manifest.webmanifest|robots.txt|sitemap.xml|CNAME|fonts).*)'],
-};
+const locales: Locale[] = ['fa', 'en'];
+const defaultLocale: Locale = 'en';
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const pathname = request.nextUrl.pathname;
 
-  // Only check the actual path (not the domain)
-  const firstSegment = pathname.split('/')[1];
-
-  // If the path starts with /fa or /en, continue without changing
-  if (firstSegment === 'fa' || firstSegment === 'en') {
-    return NextResponse.next();
+  // Skip if the request is for static files or API
+  if (
+    /\\.(.*)$/.test(pathname) ||
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/api')
+  ) {
+    return;
   }
 
-  // Detect language with more accurate header
-  const acceptLanguage = request.headers.get('accept-language') || '';
-  const preferredLanguage =
-    acceptLanguage.toLowerCase().includes('fa') ? 'fa' : 'en';
+  // Check if the pathname starts with any locale
+  const pathnameHasLocale = locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
 
-  // Create a new path with the appropriate language
-  const url = request.nextUrl.clone();
-  url.pathname = `/${preferredLanguage}${pathname === '/' ? '' : pathname}`;
-
-  return NextResponse.redirect(url);
+  if (!pathnameHasLocale) {
+    // Redirect to the default locale if no locale is present
+    const newUrl = new URL(
+      `/${defaultLocale}${pathname === '/' ? '' : pathname}`,
+      request.url
+    );
+    return NextResponse.redirect(newUrl);
+  }
 }
+
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - robots.txt (SEO file)
+     * - sitemap.xml (SEO file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)',
+  ],
+};

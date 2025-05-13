@@ -24,14 +24,19 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const { language, changeLanguage, t, direction } = useLanguage();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (isDesktop) {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isDesktop && mounted) {
       setIsOpen(true);
-    } else {
+    } else if (mounted) {
       setIsOpen(false);
     }
-  }, [isDesktop]);
+  }, [isDesktop, mounted]);
 
   interface MenuItem {
     name: string;
@@ -48,31 +53,26 @@ const Sidebar = () => {
     { name: t('contact'), icon: MessagesSquare, path: "/contact", translationKey: 'contact' },
   ];
 
-  // تغییر مسیر برای زبان‌های مختلف
   const getLocalizedPath = (path: string) => {
     return `/${language}${path === '/' ? '' : path}`;
   };
   
-  // بررسی می‌کند آیا یک منو فعال است
   const isActiveMenuItem = (menuPath: string) => {
     if (!pathname) return false;
     
-    // حذف پیشوند زبان از pathname فعلی
     const currentPathWithoutLang = pathname.replace(/^\/(en|fa)/, '');
-    // تبدیل مسیر منو به مسیر بدون پیشوند زبان
     const menuPathWithoutLang = menuPath === '/' ? '' : menuPath;
     
-    // مقایسه مسیر فعلی با مسیر منو
     return currentPathWithoutLang === menuPathWithoutLang || 
            (currentPathWithoutLang === '' && menuPathWithoutLang === '');
   };
   
-  // تغییر زبان
   const toggleLanguage = () => {
+    if (!mounted) return;
     changeLanguage(language === 'en' ? 'fa' : 'en');
   };
 
-  return (
+  const sidebarContent = () => (
     <>
       <div className="fixed top-0 left-0 right-0 h-16 bg-background/80 backdrop-blur-sm border-b border-border z-40 flex md:hidden items-center px-4">
         <button
@@ -151,7 +151,22 @@ const Sidebar = () => {
       </motion.aside>
 
       <div className={`${direction === 'rtl' ? 'md:pr-64' : 'md:pl-64'}`} />
+    </>
+  );
 
+  if (!mounted) {
+    return (
+      <div className="opacity-0">
+        <div className="fixed top-0 left-0 right-0 h-16 z-40"></div>
+        <div className="fixed top-0 bottom-0 left-0 w-64 z-50"></div>
+        <div className="md:pl-64"></div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {sidebarContent()}
       {pathname && pathname !== '/' && pathname !== '/fa' && pathname !== '/en' && (
         <script
           type="application/ld+json"

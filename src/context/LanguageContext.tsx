@@ -13,6 +13,7 @@ interface LanguageContextType {
   direction: Direction;
   changeLanguage: (lang: Language) => void;
   t: (key: string) => string;
+  isReady: boolean;
 }
 
 // ایجاد کانتکست با مقدار پیش‌فرض
@@ -21,6 +22,7 @@ const LanguageContext = createContext<LanguageContextType>({
   direction: 'ltr',
   changeLanguage: () => {},
   t: (key: string) => key,
+  isReady: false
 });
 
 // ترجمه‌ها
@@ -41,19 +43,30 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   const [language, setLanguage] = useState<Language>('en');
   const [direction, setDirection] = useState<Direction>('ltr');
   const [isInitialized, setIsInitialized] = useState(false);
+  // اضافه کردن متغیر mounted برای کنترل وضعیت مانت شدن کامپوننت
+  const [mounted, setMounted] = useState(false);
+  
+  // در اولین رندر سمت کلاینت، مشخص می‌کنیم که کامپوننت مانت شده است
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   // در اولین رندر سمت کلاینت، زبان را براساس مسیر تعیین می‌کنیم
   useEffect(() => {
-    if (pathname) {
+    if (pathname && mounted) {
       const detectedLanguage: Language = pathname.startsWith('/fa') ? 'fa' : 'en';
       setLanguage(detectedLanguage);
       setDirection(detectedLanguage === 'fa' ? 'rtl' : 'ltr');
     }
-    setIsInitialized(true);
-  }, [pathname]);
+    if (mounted) {
+      setIsInitialized(true);
+    }
+  }, [pathname, mounted]);
 
   // تغییر زبان
   const changeLanguage = (lang: Language) => {
+    if (!mounted) return; // اگر کامپوننت هنوز مانت نشده، تغییری ایجاد نمی‌کنیم
+    
     setLanguage(lang);
     setDirection(lang === 'fa' ? 'rtl' : 'ltr');
     
@@ -68,7 +81,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   // ترجمه کلیدها
   const t = (key: string): string => {
-    if (!translations[language] || !translations[language][key]) {
+    if (!mounted || !translations[language] || !translations[language][key]) {
       return key;
     }
     return translations[language][key];
@@ -76,7 +89,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   // تنظیم جهت صفحه در کل سند HTML فقط در سمت کلاینت
   useEffect(() => {
-    if (typeof document !== 'undefined' && isInitialized) {
+    if (typeof document !== 'undefined' && isInitialized && mounted) {
       document.documentElement.dir = direction;
       document.documentElement.lang = language;
       
@@ -87,14 +100,20 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
         document.documentElement.classList.remove('rtl');
       }
     }
-  }, [direction, language, isInitialized]);
+  }, [direction, language, isInitialized, mounted]);
 
   const value = {
     language,
     direction,
     changeLanguage,
-    t
+    t,
+    isReady: mounted && isInitialized
   };
+
+  // در حالت سرور یا قبل از مانت شدن، یک نسخه ساده از content را برمی‌گردانیم
+  if (!mounted) {
+    return <>{children}</>;
+  }
 
   return (
     <LanguageContext.Provider value={value}>
