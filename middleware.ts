@@ -6,6 +6,7 @@ const defaultLocale: Locale = 'en';
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  console.log("middleware is active")
 
   // اگر مسیر خالی است، به مسیر پیش‌فرض ریدایرکت کن
   if (pathname === '/') {
