@@ -5,7 +5,7 @@ import { ProfileInfo } from "@/types/profile";
 import HeroSectionSkeleton from '@/components/loading/HeroSectionSkeleton';
 
 const profileData: ProfileInfo = {
-  fullName: "Farid Siadatzadeh",
+  fullName: "Farid Siadatzade",
   role: "Frontend Developer",
   shortBio: "Passionate and creative frontend developer with over 5 years of experience developing cutting-edge and robust code for high-volume businesses. Skilled in React, TypeScript, and modern web technologies.",
   skills: [

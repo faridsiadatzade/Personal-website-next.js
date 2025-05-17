@@ -131,9 +131,7 @@ const Sidebar = () => {
 
           <div className="p-4 border-t border-border">
             <div className="flex gap-4 justify-center">
-              <ThemeSwitcher />
-              <ColorPicker />
-              <div className="relative">
+            <div className="relative">
                 <button
                   onClick={toggleLanguage}
                   className="p-2 rounded-full shadow-lg bg-card hover:bg-accent transition-colors"
@@ -145,6 +143,8 @@ const Sidebar = () => {
                   </div>
                 </button>
               </div>
+              <ThemeSwitcher />
+              <ColorPicker />
             </div>
           </div>
         </div>
