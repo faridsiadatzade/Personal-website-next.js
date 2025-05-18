@@ -6,12 +6,7 @@ const defaultLocale: Locale = 'en';
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  console.log("middleware is active")
-
-  // اگر مسیر خالی است، به مسیر پیش‌فرض ریدایرکت کن
-  if (pathname === '/') {
-    return NextResponse.redirect(new URL(`/${defaultLocale}`, request.url));
-  }
+  console.log("middleware is active", pathname);
 
   // Skip if the request is for static files or API
   if (
@@ -22,7 +17,12 @@ export function middleware(request: NextRequest) {
     pathname.startsWith('/robots') ||
     pathname.startsWith('/sitemap')
   ) {
-    return;
+    return NextResponse.next();
+  }
+
+  // اگر مسیر خالی است، به مسیر پیش‌فرض ریدایرکت کن
+  if (pathname === '/') {
+    return NextResponse.redirect(new URL(`/${defaultLocale}`, request.url));
   }
 
   // Check if the pathname starts with any locale
@@ -38,6 +38,8 @@ export function middleware(request: NextRequest) {
     );
     return NextResponse.redirect(newUrl);
   }
+
+  return NextResponse.next();
 }
 
 export const config = {
