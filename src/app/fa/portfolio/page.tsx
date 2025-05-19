@@ -23,7 +23,7 @@ const portfolioData: PortfolioInfo = {
   projects: [
     {
       title: "وب‌سایت شخصی",
-      description: "یک وب‌سایت شخصی مدرن با استفاده از Next.js، TypeScript و Tailwind CSS. ویژگی‌هایی مانند حالت تاریک، انیمیشن و طراحی ریسپانسیو دارد.",
+      description: "یک وب‌سایت شخصی مدرن با استفاده از Next.js، TypeScript و Tailwind CSS. ویژگی‌هایی مانند حالت تاریک، دو زبانه بودن، انیمیشن و طراحی ریسپانسیو و ... دارد.",
       image: personalWeb,
       technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
       link: "https://faridsi.ir",
@@ -39,7 +39,7 @@ const portfolioData: PortfolioInfo = {
     },
     {
       title: "همراه پلاس",
-      description: "یک برنامه مدیریت وظایف مشارکتی با به‌روزرسانی‌های بلادرنگ و ویژگی‌های همکاری تیمی.",
+      description: "در همراه پلاس می‌توانید انواع اوراق بهادار  مانند سهام، حق تقدم سهام، اوراق با درآمد ثابت، اختیار معامله و همچنین صندوق‌های قابل معامله (ETF) را خرید و فروش کنید.",
       image: hamrahplus,
       technologies: ["JavaScript", "PWA",],
       link: "https://mobile.ipb.ir",

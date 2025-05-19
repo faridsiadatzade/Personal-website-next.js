@@ -7,7 +7,7 @@ import HeroSectionSkeleton from '@/components/loading/HeroSectionSkeleton';
 const profileData: ProfileInfo = {
   fullName: "فرید سیادت زاده",
   role: "توسعه دهنده فرانت‌اند",
-  shortBio: "توسعه دهنده فرانت‌اند با بیش از ۵ سال تجربه در توسعه کدهای پیشرفته و مقاوم برای کسب‌وکارهای پرحجم. مسلط به React، TypeScript و فناوری‌های وب مدرن.",
+  shortBio: "توسعه‌دهنده فرانت‌اند خلاق و پرانرژی با بیش از ۵ سال تجربه در طراحی و پیاده‌سازی رابط‌های کاربری مدرن و قدرتمند برای کسب‌وکارهای پرترافیک. مسلط به React، TypeScript و تکنولوژی‌های به‌روز وب.",
   skills: [
     "React",
     "TypeScript",

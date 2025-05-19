@@ -38,6 +38,12 @@ const Sidebar = () => {
     }
   }, [isDesktop, mounted]);
 
+  const handleClose = () => {
+    if (!isDesktop) {
+      setIsOpen(false);
+    }
+  };
+
   interface MenuItem {
     name: string;
     path: string;
@@ -91,14 +97,16 @@ const Sidebar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/50 z-40 md:hidden"
-            onClick={() => setIsOpen(false)}
+            onClick={handleClose}
           />
         )}
       </AnimatePresence>
 
       <motion.aside
         initial={false}
-        animate={{ x: isOpen ? 0 : "-100%" }}
+        animate={{ 
+          x: isOpen ? 0 : direction === 'rtl' ? '100%' : '-100%'
+        }}
         transition={{ type: "spring", bounce: 0, duration: 0.3 }}
         className={`fixed top-0 bottom-0 ${direction === 'rtl' ? 'right-0' : 'left-0'} w-64 z-50 bg-background ${direction === 'rtl' ? 'border-l' : 'border-r'} border-border`}
       >
@@ -119,7 +127,7 @@ const Sidebar = () => {
                       hover:bg-primary/10 hover:text-primary
                       ${isActiveMenuItem(item.path) ? "bg-primary/10 text-primary" : "text-foreground"}
                     `}
-                    onClick={() => !isDesktop && setIsOpen(false)}
+                    onClick={handleClose}
                   >
                     <item.icon className="w-5 h-5" />
                     <span className="font-medium">{t(item.translationKey)}</span>
@@ -131,7 +139,7 @@ const Sidebar = () => {
 
           <div className="p-4 border-t border-border">
             <div className="flex gap-4 justify-center">
-            <div className="relative">
+              <div className="relative">
                 <button
                   onClick={toggleLanguage}
                   className="p-2 rounded-full shadow-lg bg-card hover:bg-accent transition-colors"
